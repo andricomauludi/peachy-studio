@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Full Page Carousel</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      /* Full page carousel */
+      .carousel-item {
+        height: 100vh;
+        background-size: cover;
+        background-position: center;
+      }
+      .carousel-inner {
+        height: 100%;
+      }
+      .personal-price-section {
+        padding: 20px;
+        background: #fff; /* White background for the section */
+        /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); Slight shadow for better visibility */
+        border-radius: 8px; /* Rounded corners */
+        max-width: 1200px; /* Maximum width for the section */
+        margin: 0 auto; /* Center the section horizontally */        
+      }      
+      .personal-price-section__content {
+        display: flex;
+        gap: 60px;
+        justify-content: center; /* Center the content horizontally */
+        /* align-items: center; Center the content vertically */
+      }
+      .personal-price-section__photo {
+        width: 603px;
+        height: 754px;
+        background-color: #ddd; /* Placeholder color */
+        background-size: cover;
+        background-position: center;
+      }
+      .personal-price-section__details {
+        flex: 1;
+      }
+      .personal-price-section__details h1 {
+        margin: 0;
+        font-size: 54px;
+      }
+      .personal-price-section__details p {
+        margin: 10px 0;
+        font-size: 12px;
+      }
+      .personal-price-section__price {
+        margin: 10px 0;
+        font-size: 18px;
+        font-weight: bold;
+      }
+      .personal-price-section__person-section {
+        margin: 10px 0;
+        display: flex;
+        gap: 10px;
+      }
+      .personal-price-section__person-section button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 25px;
+        background-color: #feb4c5;
+      }
+      .button-booking {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 25px;
+        background-color: #feb4c5;
+      }
+      .personal-price-section__view-details {
+        margin-top: 20px;
+        font-size: 16px;
+      }
+      .personal-price-section__view-details a {
+        text-decoration: none;
+        color: #ff9fb5;
+      }
+      .navbar {
+        transition: background-color 0.3s, color 0.3s;
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+        background-color: pink;
+        color: black;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .navbar a {
+        color: inherit; /* Ensure links inherit text color */
+      }
+      .navbar.scrolled {
+        background-color: white;
+        color: pink;
+      }
+      .navbar-brand {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 10px;
+      }
+      .navbar-nav {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-top: 40px; /* Adjust this value if needed */
+      }
+      /* Define the fade-in animation */
+      .fade-in {
+        opacity: 0;
+        transition: opacity 0.6s ease-in-out;
+      }
+
+      /* The class that will be added when the element is in view */
+      .fade-in-visible {
+        opacity: 1;
+      }
+      /* Define the slide-up animation */
+      .slide-up {
+        transform: translateY(50px); /* Start position */
+        opacity: 0;
+        transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
+      }
+
+      /* The class that will be added when the element is in view */
+      .slide-up-visible {
+        transform: translateY(0); /* End position */
+        opacity: 1;
+      }
+      /* Footer styles */
+      .footer {
+        background-color: pink;
+        padding: 20px;
+        color: black;
+      }
+      .footer-logo {
+        font-size: 24px;
+        font-weight: bold;
+      }
+      .footer-contact,
+      .footer-social {
+        margin-top: 10px;
+      }
+      .footer-social a {
+        margin-right: 10px;
+        color: black;
+        text-decoration: none;
+      }
+      .footer-social a:hover {
+        color: darkgray;
+      }
+      .footer-map iframe {
+        width: 100%;
+        height: 250px;
+        border: 0;
+      }
+      .package-details {
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+        .package-details ul {
+            list-style-type: disc; /* Add bullet points */
+            padding: 0;
+        }
+
+        .package-details li {
+            margin-bottom: 10px;
+            margin-left: 50px;
+        }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg">
+      <a class="navbar-brand" href="./index.html">PEACHY STUDIO</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="./profile-photo.html">Profile Photo</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./yearbook-photo.html">Yearbook Photo</a>
+            </li>
+           
+          </ul>
+      </div>
+    </nav>
+    <div class="personal-price-section" style="padding-top: 200px;">      
+      <!-- Second Row -->
+      <div class="personal-price-section__content">
+          <!-- First Column: Photo -->
+          <div
+            class="personal-price-section__photo fade-in"
+            style="background-image: url('./assets/img/product-1.webp')"
+          ></div>
+
+         <!-- Second Column: Details -->
+         <div class="personal-price-section__details fade-in">
+            <h1>Profile Photo Package</h1>
+            <p>Your session for personal profile photo, Make your own profile fabulous!</p>
+            <div class="personal-price-section__price">Rp. 250.000,- /pax</div>
+           <!-- Package Details -->
+           <div class="package-details">
+            <h2>Profile Photo Package</h2>
+            <ul>
+                <li>1 sesi max 1 person</li>
+                <li>Sesi total 25 menit</li>
+                <li>10 Menit bilit kostum dan akseseris</li>
+                <li>10 Menit sesi foto</li>
+                <li>5 Menit pilih foto</li>
+                <li>6 Digital Soft Copy</li>
+                <li>Free pilih warna background</li>
+                <li>1 ID Card</li>
+                <li>2 Collage Photo Card</li>
+                <li>2 Frame Custom</li>
+            </ul>          
+        </div>
+            <div class="personal-price-section__button-container">
+                <script
+                    id="setmore_script"
+                    type="text/javascript"
+                    src="https://storage.googleapis.com/fullintegration-live/webComponentAppListing/Container/setmoreIframeLive.js"
+                ></script>
+                <a
+                    style="float: none"
+                    id="Setmore_button_iframe"
+                    href="https://booking.setmore.com/scheduleappointment/dc9a0312-405e-43f4-8236-c90fd55298ce"
+                    target="_blank"
+                >
+                <button class="button-booking">
+                    Book Now
+                </button>
+                </a>
+            </div>            
+        </div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <!-- First Column: Logo and Contact Info -->
+          <div class="col-md-6">
+            <div class="footer-logo">YourLogo</div>
+            <div class="footer-contact">
+              <h5>Contact Us</h5>
+              <p>Phone: +62 123 456 789</p>
+            </div>
+            <div class="footer-social">
+              <h5>Follow Us</h5>
+              <a href="https://wa.me/yourphone" target="_blank">WhatsApp</a>
+              <a href="https://instagram.com/yourprofile" target="_blank"
+                >Instagram</a
+              >
+            </div>
+          </div>
+          <!-- Second Column: Map Location -->
+          <div class="col-md-6">
+            <div class="footer-map">
+              <h5>Our Location</h5>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.404240028181!2d106.78730361433062!3d-6.594551766322868!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6993b8e6e0e0d7%3A0xe1f78e2a1d11d62!2sBogor%2C%20West%20Java%2C%20Indonesia!5e0!3m2!1sen!2sus!4v1692034438023!5m2!1sen!2sus"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      function calculateTotal(numPersons) {
+        const price = 250000; // Replace with dynamic price if needed
+        const total = price * numPersons;
+        const formattedTotal = new Intl.NumberFormat("id-ID", {
+          style: "currency",
+          currency: "IDR",
+        }).format(total);
+        document.getElementById("total-price").textContent =
+          "Total: " + formattedTotal;
+      }         
+      document.addEventListener("DOMContentLoaded", () => {
+        const fadeInElements = document.querySelectorAll(".fade-in");
+        const slideUpElements = document.querySelectorAll(".slide-up");
+
+        function checkVisibility() {
+          fadeInElements.forEach((el) => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom >= 0) {
+              el.classList.add("fade-in-visible");
+            } else {
+              el.classList.remove("fade-in-visible");
+            }
+          });
+
+          slideUpElements.forEach((el) => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom >= 0) {
+              el.classList.add("slide-up-visible");
+            } else {
+              el.classList.remove("slide-up-visible");
+            }
+          });
+        }
+
+        window.addEventListener("scroll", checkVisibility);
+        checkVisibility(); // Check visibility on load
+      });
+    </script>
+  </body>
+</html>
